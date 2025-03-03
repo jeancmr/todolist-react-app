@@ -5,7 +5,7 @@ const ForgottenPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
+    alert('Feature incoming');
   };
 
   return (

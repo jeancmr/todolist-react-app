@@ -7,6 +7,7 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, password);
+    alert('Feature incoming');
   };
 
   return (

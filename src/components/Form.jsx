@@ -1,27 +1,47 @@
 import { useState } from 'react';
 
-const Form = ({ onAddTask }) => {
+const Form = ({ title, onTitle, onAddTask }) => {
   const [input, setInput] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!input) return;
 
-    onAddTask({ id: Date.now(), name: input, completed: false });
+    onAddTask({
+      id: new Date().getTime().toString(),
+      name: input,
+      completed: false,
+    });
     setInput('');
   };
   return (
-    <form onSubmit={onSubmit} className="bg-gray-950 p-6 flex justify-center">
+    <aside>
       <input
         type="text"
-        name="input"
-        placeholder="Add a new item"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        className="p-2 border border-gray-400 rounded-md mr-7 text-white"
+        name="title"
+        placeholder="Title"
+        value={title}
+        onChange={(e) => onTitle(e.target.value)}
+        className="p-2 text-2xl w-auto border-none rounded-md text-white focus:outline-none title-form"
       />
-      <button className="bg-green-500 text-white rounded-md cursor-pointer py-2 px-4">Add</button>
-    </form>
+
+      <div className="tasks flex justify-center">
+        <input
+          type="text"
+          name="input"
+          placeholder="Add a new item"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="p-2 border border-gray-400 rounded-md mr-7 text-white"
+        />
+        <button
+          className="bg-green-500 text-white rounded-md cursor-pointer py-2 px-4"
+          onClick={onSubmit}
+        >
+          Add
+        </button>
+      </div>
+    </aside>
   );
 };
 export default Form;
