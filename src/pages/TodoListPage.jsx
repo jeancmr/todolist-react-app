@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import Header from '../components/Header';
 import TodoLists from '../components/TodoLists';
-import todoLists from '../data/data';
+import todoListsData from '../data/data';
 import Modal from '../components/Modal';
 import NewTodoList from '../components/NewTodoList';
 import Footer from '../components/Footer';
+import { todoListReducer } from './todoListReducer';
 
 const TodoListPage = () => {
-  const [lists, setLists] = useState(todoLists);
+  const [todoLists, dispatch] = useReducer(todoListReducer, todoListsData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
@@ -22,18 +23,32 @@ const TodoListPage = () => {
   };
 
   const handleAddList = (list) => {
-    setLists((prevTasks) => [...prevTasks, list]);
+    const action = {
+      type: 'ADD_LIST',
+      payload: list,
+    };
+    dispatch(action);
+    handleCloseModal();
   };
 
   const handleEditList = (list) => {
-    setLists((prevTasks) =>
-      prevTasks.map((prevList) => (prevList.id === list.id ? list : prevList))
-    );
+    const action = {
+      type: 'EDIT_LIST',
+      payload: list,
+    };
+    dispatch(action);
+    handleCloseModal();
   };
 
   const handleDeleteList = (id) => {
     const confirmed = window.confirm('Are you sure you want to delete this list?');
-    if (confirmed) setLists((prevTasks) => prevTasks.filter((list) => list.id !== id));
+    if (confirmed) {
+      const action = {
+        type: 'DELETE_LIST',
+        payload: id,
+      };
+      dispatch(action);
+    }
   };
 
   return (
@@ -51,7 +66,7 @@ const TodoListPage = () => {
         </div>
 
         <TodoLists
-          lists={lists}
+          lists={todoLists}
           onOpenModal={handleOpenModal}
           onEditList={handleEditList}
           onDeletList={handleDeleteList}

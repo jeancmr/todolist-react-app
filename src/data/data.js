@@ -1,4 +1,4 @@
-const todoLists = [
+const todoListsData = [
   {
     id: 1,
     title: 'routine',
@@ -32,4 +32,4 @@ const todoLists = [
   },
 ];
 
-export default todoLists;
+export default todoListsData;
