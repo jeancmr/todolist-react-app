@@ -6,21 +6,11 @@ import Modal from '../components/Modal';
 import NewTodoList from '../components/NewTodoList';
 import Footer from '../components/Footer';
 import { todoListReducer } from './todoListReducer';
+import { useModal } from '../hooks/useModal';
 
 const TodoListPage = () => {
   const [todoLists, dispatch] = useReducer(todoListReducer, todoListsData);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
-
-  const handleOpenModal = (content) => {
-    setModalContent(content);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setModalContent(null);
-  };
+  const { isModalOpen, modalContent, handleOpenModal, handleCloseModal } = useModal();
 
   const handleAddList = (list) => {
     const action = {
