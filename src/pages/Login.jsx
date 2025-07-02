@@ -16,7 +16,7 @@ const Login = ({ onOpenModal }) => {
       alert('Please fill all fields');
       return;
     }
-    navigate('/'); // Cambia a la ruta deseada
+    navigate('/');
   };
 
   return (

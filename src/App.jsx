@@ -33,7 +33,6 @@ const App = () => {
           <Route path="*" element={<Pagenotfound />} />
         </Routes>
       </BrowserRouter>
-      {/* Modal global con contenido dinámico */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {modalContent}
       </Modal>

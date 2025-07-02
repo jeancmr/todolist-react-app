@@ -58,6 +58,7 @@ const TodoListPage = () => {
         />
       </main>
       <Footer />
+
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {modalContent}
       </Modal>

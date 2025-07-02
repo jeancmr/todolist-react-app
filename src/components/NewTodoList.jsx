@@ -57,7 +57,6 @@ const NewTodoList = ({ list, onAddList, onEditList }) => {
       onSubmit={onSubmit}
       className="bg-gray-800 rounded-lg text-gray-500 flex flex-col gap-3.5"
     >
-      {/* <h2 className="text-6xl">{list.name}</h2> */}
       <Form onAddList={onAddList} onAddTask={handleAddTask} title={title} onTitle={setTitle} />
 
       {tasks.length > 0 ? (
