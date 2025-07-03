@@ -1,6 +1,6 @@
 import { useModal, useTodoList } from '../hooks/';
 import { Modal, Footer } from '../components';
-import { NewTodoList, TodoLists } from '../components/Todo';
+import { TodoListForm, TodoLists } from '../components/Todo';
 
 export const TodoListPage = () => {
   const { modalContent, isModalOpen, handleCloseModal, handleOpenModal } = useModal();
@@ -13,7 +13,7 @@ export const TodoListPage = () => {
         <div className="bg-gray-950 p-6 flex justify-center">
           <button
             className="bg-green-500 text-white rounded-md cursor-pointer py-2 px-4"
-            onClick={() => handleOpenModal(<NewTodoList onAddList={handleAddList} />)}
+            onClick={() => handleOpenModal(<TodoListForm onAddList={handleAddList} />)}
           >
             Create new list
           </button>

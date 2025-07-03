@@ -2,7 +2,7 @@ import Form from '../Form';
 import { useForm } from '../../hooks';
 import { useTodoTask } from '../../hooks/useTodoTask';
 
-const NewTodoList = ({ list, onAddList, onEditList }) => {
+const TodoListForm = ({ list, onAddList, onEditList }) => {
   const { tasks, onAddTask, onDeleteTask, onToggleTask, onResetTasks } = useTodoTask(list);
   const { title, onInputChange, onResetForm } = useForm({
     title: list?.title ?? '',
@@ -82,4 +82,4 @@ const NewTodoList = ({ list, onAddList, onEditList }) => {
     </form>
   );
 };
-export default NewTodoList;
+export default TodoListForm;
