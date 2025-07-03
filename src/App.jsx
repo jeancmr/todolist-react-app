@@ -1,11 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Modal from './components/Modal';
-import Login from './pages/Login';
-import Pagenotfound from './pages/Pagenotfound';
-import Account from './pages/Account';
-import About from './pages/About';
-import TodoListPage from './pages/TodoListPage';
+import { TodoListPage, LoginPage, AboutPage, AccountPage, PageNotFoundPage } from './pages';
+import Header from './components/Header';
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,13 +21,14 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
+        <Header />
+
         <Routes>
           <Route path="/" element={<TodoListPage />} />
-          <Route path="/login" element={<Login onOpenModal={handleOpenModal} />} />
-
-          <Route path="/about" element={<About />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="*" element={<Pagenotfound />} />
+          <Route path="/login" element={<LoginPage onOpenModal={handleOpenModal} />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="*" element={<PageNotFoundPage />} />
         </Routes>
       </BrowserRouter>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>

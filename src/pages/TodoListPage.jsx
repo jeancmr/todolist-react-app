@@ -1,20 +1,14 @@
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Modal from '../components/Modal';
-import NewTodoList from '../components/NewTodoList';
-import TodoLists from '../components/TodoLists';
-import { useModal } from '../hooks/useModal';
-import { useTodoList } from '../hooks/useTodoList';
+import { useModal, useTodoList } from '../hooks/';
+import { Modal, Footer } from '../components';
+import { NewTodoList, TodoLists } from '../components/Todo';
 
-const TodoListPage = () => {
+export const TodoListPage = () => {
   const { modalContent, isModalOpen, handleCloseModal, handleOpenModal } = useModal();
   const { todoLists, handleAddList, handleEditList, handleDeleteList } =
     useTodoList(handleCloseModal);
 
   return (
     <>
-      <Header />
-
       <main className="bg-gray-900 h-screen">
         <div className="bg-gray-950 p-6 flex justify-center">
           <button
@@ -40,4 +34,3 @@ const TodoListPage = () => {
     </>
   );
 };
-export default TodoListPage;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Form from './Form';
+import Form from '../Form';
 
 const NewTodoList = ({ list, onAddList, onEditList }) => {
   const [tasks, setTasks] = useState(list?.tasks ?? []);

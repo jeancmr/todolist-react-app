@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import Button from '../components/Button';
-import ForgottenPassword from './ForgottenPasswordForm';
-import RegisterForm from './RegisterForm';
+import RegisterForm from '../components/auth/RegisterForm';
+import ForgottenPassword from '../components/auth/ForgottenPasswordForm';
 
-const Login = ({ onOpenModal }) => {
+export const LoginPage = ({ onOpenModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -61,4 +60,3 @@ const Login = ({ onOpenModal }) => {
     </section>
   );
 };
-export default Login;

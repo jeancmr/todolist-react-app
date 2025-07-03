@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
-import { todoListReducer } from '../pages/todoListReducer';
 import todoListsData from '../data/data';
+import { todoListReducer } from '../utils/todoListReducer';
 
 export const useTodoList = (handleCloseModal) => {
   const [todoLists, dispatch] = useReducer(todoListReducer, todoListsData);
