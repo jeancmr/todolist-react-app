@@ -1,12 +1,14 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from '../hooks';
+import { RegisterForm, ForgottenPassword } from '../components/auth/';
 import Button from '../components/Button';
-import RegisterForm from '../components/auth/RegisterForm';
-import ForgottenPassword from '../components/auth/ForgottenPasswordForm';
 
 export const LoginPage = ({ onOpenModal }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { email, password, onInputChange } = useForm({
+    email: '',
+    password: '',
+  });
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -30,14 +32,14 @@ export const LoginPage = ({ onOpenModal }) => {
             name="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={onInputChange}
           />
           <input
             type="password"
             name="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={onInputChange}
           />
 
           <div className="form-actions">

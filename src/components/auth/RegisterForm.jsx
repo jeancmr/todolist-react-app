@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useForm } from '../../hooks';
 
 const RegisterForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { email, password, onInputChange } = useForm({
+    email: '',
+    password: '',
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ const RegisterForm = () => {
           name="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={onInputChange}
           className="bg-[#4d4949] py-3 px-6 rounded-md w-full text-white focus:outline-none"
         />
         <input
@@ -28,7 +30,7 @@ const RegisterForm = () => {
           name="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={onInputChange}
           className="bg-[#4d4949] py-3 px-6 rounded-md w-full text-white focus:outline-none mt-4"
         />
         <button type="submit" className="btn">

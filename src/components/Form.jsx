@@ -7,13 +7,16 @@ const Form = ({ title, onTitle, onAddTask }) => {
     e.preventDefault();
     if (!input) return;
 
-    onAddTask({
+    const newTask = {
       id: new Date().getTime().toString(),
       name: input,
       completed: false,
-    });
+    };
+
+    onAddTask(newTask);
     setInput('');
   };
+
   return (
     <aside>
       <input

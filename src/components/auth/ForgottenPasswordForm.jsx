@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useForm } from '../../hooks';
 
 const ForgottenPassword = () => {
-  const [email, setEmail] = useState('');
+  const { email, onInputChange } = useForm({ email: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const ForgottenPassword = () => {
           name="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={onInputChange}
           className="bg-[#4d4949] py-3 px-6 rounded-md w-full text-white focus:outline-none"
         />
         <button type="submit" className="btn">

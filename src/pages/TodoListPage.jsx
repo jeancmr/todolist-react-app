@@ -23,7 +23,7 @@ export const TodoListPage = () => {
           lists={todoLists}
           onOpenModal={handleOpenModal}
           onEditList={handleEditList}
-          onDeletList={handleDeleteList}
+          onDeleteList={handleDeleteList}
         />
       </main>
       <Footer />

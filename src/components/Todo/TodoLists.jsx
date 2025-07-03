@@ -1,6 +1,6 @@
 import TodoListItem from './TodoListItem';
 
-const TodoLists = ({ lists, onEditList, onOpenModal, onDeletList }) => {
+const TodoLists = ({ lists, onEditList, onOpenModal, onDeleteList }) => {
   return (
     <ul className="w-3xl mx-auto grid grid-cols-4 gap-4 mt-9 ">
       {lists.length > 0 ? (
@@ -10,7 +10,7 @@ const TodoLists = ({ lists, onEditList, onOpenModal, onDeletList }) => {
             list={list}
             onOpenModal={onOpenModal}
             onEditList={onEditList}
-            onDeletList={onDeletList}
+            onDeleteList={onDeleteList}
           />
         ))
       ) : (
