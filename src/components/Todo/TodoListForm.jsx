@@ -1,46 +1,13 @@
 import Form from '../Form';
-import { useForm } from '../../hooks';
-import { useTodoTask } from '../../hooks/useTodoTask';
 import { TodoTaskFormList } from './TodoTaskFormList';
+import { useTodo } from '../../hooks/useTodo';
 
 const TodoListForm = ({ list, onAddList, onEditList }) => {
-  const { tasks, onAddTask, onDeleteTask, onToggleTask, onResetTasks } = useTodoTask(list);
-  const { title, onInputChange, onResetForm } = useForm({
-    title: list?.title ?? '',
-  });
-
-  const handleAddList = () => {
-    onAddList({
-      id: new Date().getTime().toString(),
-      title,
-      tasks,
-    });
-    onResetTasks();
-    onResetForm();
-  };
-
-  const handleEditList = () => {
-    onEditList({
-      ...list,
-      title,
-      tasks,
-    });
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (!title) {
-      alert('Please enter a title');
-      return;
-    }
-
-    if (list?.id) {
-      handleEditList();
-    } else {
-      handleAddList();
-    }
-  };
+  const { tasks, onAddTask, onDeleteTask, onToggleTask, title, onInputChange, onSubmit } = useTodo(
+    list,
+    onAddList,
+    onEditList
+  );
 
   return (
     <form
