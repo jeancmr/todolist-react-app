@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Form = ({ title, onTitle, onAddTask }) => {
+const Form = ({ title, onTitleChange, onAddTask }) => {
   const [input, setInput] = useState('');
 
   const onSubmit = (e) => {
@@ -24,7 +24,7 @@ const Form = ({ title, onTitle, onAddTask }) => {
         name="title"
         placeholder="Title"
         value={title}
-        onChange={(e) => onTitle(e.target.value)}
+        onChange={onTitleChange}
         className="p-2 text-2xl w-auto border-none rounded-md text-white focus:outline-none title-form"
       />
 

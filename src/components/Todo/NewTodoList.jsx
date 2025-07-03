@@ -1,23 +1,12 @@
-import { useState } from 'react';
 import Form from '../Form';
+import { useForm } from '../../hooks';
+import { useTodoTask } from '../../hooks/useTodoTask';
 
 const NewTodoList = ({ list, onAddList, onEditList }) => {
-  const [tasks, setTasks] = useState(list?.tasks ?? []);
-  const [title, setTitle] = useState(list?.title ?? '');
-
-  const handleAddTask = (task) => {
-    setTasks((prevTasks) => [...prevTasks, task]);
-  };
-
-  const handleDeleteTask = (id) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-  };
-
-  const handleToggleTask = (id) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task))
-    );
-  };
+  const { tasks, onAddTask, onDeleteTask, onToggleTask, onResetTasks } = useTodoTask(list);
+  const { title, onInputChange, onResetForm } = useForm({
+    title: list?.title ?? '',
+  });
 
   const handleAddList = () => {
     onAddList({
@@ -25,8 +14,8 @@ const NewTodoList = ({ list, onAddList, onEditList }) => {
       title,
       tasks,
     });
-    setTasks([]);
-    setTitle('');
+    onResetTasks();
+    onResetForm();
   };
 
   const handleEditList = () => {
@@ -57,7 +46,12 @@ const NewTodoList = ({ list, onAddList, onEditList }) => {
       onSubmit={onSubmit}
       className="bg-gray-800 rounded-lg text-gray-500 flex flex-col gap-3.5"
     >
-      <Form onAddList={onAddList} onAddTask={handleAddTask} title={title} onTitle={setTitle} />
+      <Form
+        onAddList={onAddList}
+        onAddTask={onAddTask}
+        title={title}
+        onTitleChange={onInputChange}
+      />
 
       {tasks.length > 0 ? (
         <ul className="flex flex-col gap-2 justify-between">
@@ -66,15 +60,12 @@ const NewTodoList = ({ list, onAddList, onEditList }) => {
               <input
                 type="checkbox"
                 checked={task.completed}
-                onChange={() => handleToggleTask(task.id)}
+                onChange={() => onToggleTask(task.id)}
               />
               <span className={` text-lie ${task.completed ? 'line-through' : ''}`}>
                 {task.name}
               </span>
-              <button
-                className="ml-auto mr-4 cursor-pointer"
-                onClick={() => handleDeleteTask(task.id)}
-              >
+              <button className="ml-auto mr-4 cursor-pointer" onClick={() => onDeleteTask(task.id)}>
                 &#x2716;
               </button>
             </li>
