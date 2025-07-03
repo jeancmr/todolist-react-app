@@ -1,20 +1,22 @@
-import { useState } from 'react';
+import { useForm } from '../hooks';
 
 const Form = ({ title, onTitleChange, onAddTask }) => {
-  const [input, setInput] = useState('');
+  const { newTaskInput, onInputChange, onResetForm } = useForm({
+    newTaskInput: '',
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!input) return;
+    if (!newTaskInput) return;
 
     const newTask = {
       id: new Date().getTime().toString(),
-      name: input,
+      name: newTaskInput,
       completed: false,
     };
 
     onAddTask(newTask);
-    setInput('');
+    onResetForm();
   };
 
   return (
@@ -31,10 +33,10 @@ const Form = ({ title, onTitleChange, onAddTask }) => {
       <div className="tasks flex justify-center">
         <input
           type="text"
-          name="input"
+          name="newTaskInput"
           placeholder="Add a new item"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={newTaskInput}
+          onChange={onInputChange}
           className="p-2 border border-gray-400 rounded-md mr-7 text-white"
         />
         <button
