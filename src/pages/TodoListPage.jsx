@@ -1,45 +1,15 @@
-import { useReducer, useState } from 'react';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
-import TodoLists from '../components/TodoLists';
-import todoListsData from '../data/data';
 import Modal from '../components/Modal';
 import NewTodoList from '../components/NewTodoList';
-import Footer from '../components/Footer';
-import { todoListReducer } from './todoListReducer';
+import TodoLists from '../components/TodoLists';
 import { useModal } from '../hooks/useModal';
+import { useTodoList } from '../hooks/useTodoList';
 
 const TodoListPage = () => {
-  const [todoLists, dispatch] = useReducer(todoListReducer, todoListsData);
-  const { isModalOpen, modalContent, handleOpenModal, handleCloseModal } = useModal();
-
-  const handleAddList = (list) => {
-    const action = {
-      type: 'ADD_LIST',
-      payload: list,
-    };
-    dispatch(action);
-    handleCloseModal();
-  };
-
-  const handleEditList = (list) => {
-    const action = {
-      type: 'EDIT_LIST',
-      payload: list,
-    };
-    dispatch(action);
-    handleCloseModal();
-  };
-
-  const handleDeleteList = (id) => {
-    const confirmed = window.confirm('Are you sure you want to delete this list?');
-    if (confirmed) {
-      const action = {
-        type: 'DELETE_LIST',
-        payload: id,
-      };
-      dispatch(action);
-    }
-  };
+  const { modalContent, isModalOpen, handleCloseModal, handleOpenModal } = useModal();
+  const { todoLists, handleAddList, handleEditList, handleDeleteList } =
+    useTodoList(handleCloseModal);
 
   return (
     <>

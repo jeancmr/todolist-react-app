@@ -2,7 +2,6 @@ import { useRef, useEffect } from 'react';
 
 export default function Modal({ isOpen, onClose, children }) {
   const modalRef = useRef(null);
-  console.log('ALOHA');
 
   useEffect(() => {
     if (isOpen) {

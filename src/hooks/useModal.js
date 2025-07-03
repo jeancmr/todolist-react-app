@@ -10,8 +10,8 @@ export const useModal = () => {
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
     setModalContent(null);
+    setIsModalOpen(false);
   };
 
   return {
