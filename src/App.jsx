@@ -1,22 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
-import Modal from './components/Modal';
 import { TodoListPage, LoginPage, AboutPage, AccountPage, PageNotFoundPage } from './pages';
-import Header from './components/Header';
+import { Header, Modal } from './components';
+import { useModal } from './hooks';
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
-
-  const handleOpenModal = (content) => {
-    setModalContent(content);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setModalContent(null);
-  };
+  const { isModalOpen, modalContent, handleOpenModal, handleCloseModal } = useModal();
 
   return (
     <>
@@ -31,10 +19,12 @@ const App = () => {
           <Route path="*" element={<PageNotFoundPage />} />
         </Routes>
       </BrowserRouter>
+
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {modalContent}
       </Modal>
     </>
   );
 };
+
 export default App;
