@@ -11,16 +11,22 @@ export default function Modal({ isOpen, onClose, children }) {
     }
   }, [isOpen]);
 
-  // const handleOutsideClick = (e) => {
-  //   if (modalRef.current && e.target === modalRef.current) {
-  //     onClose();
-  //   }
-  // };
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
 
   return (
     <dialog
       ref={modalRef}
-      // onClick={handleOutsideClick}
       className="p-8 rounded-md backdrop:bg-black/50 fixed inset-0 m-auto open:flex open:flex-col open:items-center open:justify-center max-w-md bg-gray-800 text-white border-none"
     >
       {children}
