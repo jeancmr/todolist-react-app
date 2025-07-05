@@ -1,4 +1,5 @@
 import { useForm } from '../hooks';
+import { TodoButton } from './Todo';
 
 const Form = ({ title, onTitleChange, onAddTask }) => {
   const { newTaskInput, onInputChange, onResetForm } = useForm({
@@ -39,12 +40,8 @@ const Form = ({ title, onTitleChange, onAddTask }) => {
           onChange={onInputChange}
           className="p-2 border border-gray-400 rounded-md mr-7 text-white"
         />
-        <button
-          className="bg-green-500 text-white rounded-md cursor-pointer py-2 px-4"
-          onClick={onSubmit}
-        >
-          Add
-        </button>
+
+        <TodoButton onClick={onSubmit}>Add</TodoButton>
       </div>
     </aside>
   );

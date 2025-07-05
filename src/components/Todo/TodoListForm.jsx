@@ -1,6 +1,7 @@
 import Form from '../Form';
 import { TodoTaskFormList } from './TodoTaskFormList';
 import { useTodo } from '../../hooks/useTodo';
+import TodoButton from './TodoButton';
 
 const TodoListForm = ({ list, onAddList, onEditList }) => {
   const { tasks, onAddTask, onDeleteTask, onToggleTask, title, onInputChange, onSubmit } = useTodo(
@@ -23,7 +24,7 @@ const TodoListForm = ({ list, onAddList, onEditList }) => {
 
       <TodoTaskFormList tasks={tasks} onDeleteTask={onDeleteTask} onToggleTask={onToggleTask} />
 
-      <button className="bg-green-500 text-white rounded-md cursor-pointer py-2 px-4">Save</button>
+      <TodoButton>Save</TodoButton>
     </form>
   );
 };
