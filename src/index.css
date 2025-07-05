@@ -2,8 +2,8 @@
 @import 'tailwindcss';
 
 body {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: 'Roboto', serif;
+  background-color: #262626;
 }
 
 .login-header {
@@ -82,20 +82,21 @@ button:focus-visible {
   box-shadow: none !important;
 }
 
-.header-app {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 4.8rem;
-  background-color: #1a1a1a;
-  color: #fff;
-}
-
 .header-logo {
   display: flex;
   align-items: center;
   gap: 1.2rem;
   font-size: 1rem;
+}
+
+li a {
+  color: #d8d3d3;
+  transition: color 0.25s;
+}
+
+.active,
+li a:hover {
+  color: #fff;
 }
 
 /* 
